@@ -87,6 +87,7 @@
 \item Authoritative server keeps hostname-IP mappings of organization's named hosts
 \item Local DNS acts as a proxy, caches previously retrieved mappings to cache. This allows for faster lookup. Owned by ISPs
 \item All DNS servers can implement caching, so root servers are often not called upon
+\item DNS uses port 53
 \end{itemize}
 
 \textbf{DELAY}
@@ -166,6 +167,8 @@
   \end{itemize}
 \end{itemize}
 
+{\centering \includegraphics[scale=0.20]{udp_segment_structure}}
+
 \textbf{TCP}
 \begin{itemize}[leftmargin=*]
 \item Connection-oriented -- Handshake is required before transmission
@@ -187,10 +190,13 @@
   \item Estimate RTT using Exponential Weighted Moving Average: $RTT_E = (1 - a) * RTT_E + a * RTT_s$, where $a$ is usually $\frac{1}{8}$
   \item Calculate deviation of RTT using $RTT_{dev} = (1 - b) * RTT_{dev} + b*RTT_s - RTT_E$, where $b$ is usually $\frac{1}{4}$
   \item Retransmission Timeout is $RTO = RTT_{E} + 4 * RTT_{dev}$, the deviation is used as a "safety margin"
+  \item Note that the RTO is \textbf{doubled} after each timeout
   \item TCP Fast transmission: If 3 Duplicate ACK
+  \item 
   \end{itemize}
 \end{itemize}
 
+{\centering \includegraphics[scale=0.20]{tcp_segment_structure}}
 {\centering \includegraphics[scale=0.20]{tcp_receiver_events}}
 
 % NETWORK LAYER %
